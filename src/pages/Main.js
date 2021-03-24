@@ -1,9 +1,25 @@
-import React, {Fragment} from 'react'
+import React, {Fragment, useContext, useEffect} from 'react'
+import List from '../components/List'
+import Loader from '../components/Loader'
+import { FirebaseContext } from '../context/firebase/firebaseContext'
 
 const Main = () => {
+
+const {loading, fetchItems} = useContext(FirebaseContext)
+
+useEffect(() => {
+    fetchItems()
+    // eslint-disable-next-line
+},[])
+
     return (
         <Fragment>
-            <h1>Main page</h1>
+            {
+                loading
+                ? <Loader />
+                : <List />
+            }
+           
         </Fragment>
     )
 }

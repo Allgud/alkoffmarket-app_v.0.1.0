@@ -2,7 +2,7 @@ import React from 'react'
 import {NavLink} from 'react-router-dom'
 
 const Navbar = () => (
-        <nav className="navbar navbar-dark navbar-expand-lg bg-dark">
+        <nav className="navbar navbar-dark navbar-expand-lg bg-dark mb-2">
             <div className="navbar-brand">
                 AlkoffMarket
             </div>

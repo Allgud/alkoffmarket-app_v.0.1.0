@@ -1,16 +1,27 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import {CSSTransition} from 'react-transition-group'
+import { AlertContext } from '../context/alert/alertContext'
 
-const Alert = ({alert}) => {
-    if(!alert){
-        return null
-    }
+const Alert = () => {
+
+    const {alert, hideAlert} = useContext(AlertContext)
+
     return (
-        <div className={`alert alert-${alert.type || 'warning'} alert-dismissible`}>
-            <strong>Внимание</strong> {alert.text}
-            <button type="button" className="btn-close" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
+        <CSSTransition
+            in={alert.visible}
+            timeout={750}
+            classNames={'alert'}
+            mountOnEnter
+            unmountOnExit
+        >
+            <div className={`alert alert-${alert.type || 'warning'} alert-dismissible d-flex justify-content-between`}>
+                <strong>Внимание</strong> {alert.text}
+                <button onClick={hideAlert} type="button" className="btn-close" aria-label="Close">
+                    <span className="br-5"aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </CSSTransition>
+        
     ) 
 }
 

@@ -45,3 +45,42 @@ code {
 .btn_item {
   border-radius: 10px;
 }
+
+.alert-enter {
+  opacity: 0;
+}
+
+.alert-enter-active {
+  transition: opacity 750ms ease-out;
+  opacity: 1;
+}
+
+.alert-exit-active {
+  transition: opacity 750ms ease-out;
+  opacity: 0;
+}
+
+.item-enter-active {
+  animation: item 1s ease-in alternate-reverse;
+}
+
+.item-exit-active {
+  animation: item 1s ease-out forwards;
+}
+
+
+@keyframes item {
+  0% {
+    transform: translateX(0);
+  }
+
+  30% {
+    opacity: 0.7;
+    transform: translateX(30px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+}

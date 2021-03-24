@@ -1,19 +1,34 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import {TransitionGroup, CSSTransition} from 'react-transition-group'
+import { FirebaseContext } from '../context/firebase/firebaseContext'
 
-const List = ({items}) => {
+const List = () => {
+
+    const {list, removeItem} = useContext(FirebaseContext)
+
     return (
-        <ul className="list-group">
-            {items.map(item => (
-                <li 
-                    className="list-group-item list_item"
+        <TransitionGroup component='ul' className="list-group">
+            {list.map(item => (
+                <CSSTransition 
                     key={item.id}
+                    classNames={'item'}
+                    timeout={1000}
                 >
-                    <strong className="item_title"><span className="item_title_num">{item.id}</span>{item.title}</strong>
-                    <span className="item_date">{item.date}</span>
-                    <button type="button" className="btn btn-outline-danger btn-sm btn_item">&times;</button>
-                </li>
+                    <li className="list-group-item list_item" >
+                        <strong className="item_title"><span className="item_title_num">{item.id}</span>{item.title}</strong>
+                        <span className="item_date">{item.date}</span>
+                        <button 
+                            type="button" 
+                            className="btn btn-outline-danger btn-sm btn_item"
+                            onClick={() => removeItem(item.id)}
+                        >
+                            &times;
+                        </button>
+                    </li>
+                </CSSTransition>
+                
             ))}
-        </ul>
+        </TransitionGroup>
     )
 }
 
