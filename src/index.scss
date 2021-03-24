@@ -1,0 +1,47 @@
+@import "~bootstrap/scss/bootstrap";
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.input_name {
+  width: 60%;
+  padding: 0px 6px;
+}
+
+.input_group_label {
+  width: 20%;
+}
+
+.input_date {
+  width: 15%;
+}
+
+.btn_save {
+  margin-left: 6px;
+  border-radius: 5px;
+}
+
+.item_title_num {
+  margin-right: 5px;
+  color: red;
+}
+
+.list_item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn_item {
+  border-radius: 10px;
+}
