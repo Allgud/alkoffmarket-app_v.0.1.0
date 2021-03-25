@@ -1,11 +1,12 @@
 import React, {Fragment, useContext, useEffect} from 'react'
 import Form from '../components/Form'
 import List from '../components/List'
+import Loader from '../components/Loader'
 import { FirebaseContext } from '../context/firebase/firebaseContext'
 
 const Add = () => {
 
-    const {fetchItems} = useContext(FirebaseContext)
+    const {loading, fetchItems} = useContext(FirebaseContext)
 
     useEffect(() => {fetchItems()}
     // eslint-disable-next-line
@@ -14,8 +15,10 @@ const Add = () => {
         <Fragment>
             <Form />
             <hr />
-            <List />
-            
+            {loading 
+                ? <Loader />
+                :  <List />
+            }   
         </Fragment>
     )
 }

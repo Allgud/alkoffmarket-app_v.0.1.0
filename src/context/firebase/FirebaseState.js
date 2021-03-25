@@ -47,7 +47,7 @@ export const FirebaseState = ({children}) => {
         })
         let now = moment().format('YYYY-MM-DD')
         const payload = result.filter(item => moment(item.date).diff(now, 'days') <= 90)
-        
+
         dispatch({
             type: FETCH_FILTERED_ITEMS,
             payload

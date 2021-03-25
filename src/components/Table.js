@@ -7,7 +7,7 @@ const Table = () => {
     const {list, removeItem} = useContext(FirebaseContext)
 
     return (
-        <table className={`table table-light table-striped`}>
+        <table className="table table-striped">
             <thead className="table-dark">
                 <tr>
                     <th scope="col">#</th>
@@ -18,20 +18,20 @@ const Table = () => {
             </thead>
             <tbody>
                 {list.map(item => (
-                    <tr key={item.id}>
-                      <th scope="row">{item.id}</th>
-                        <td>{item.title}</td>
-                        <td>{item.date}</td>
-                        <td>
-                        <button 
-                            type="button" 
-                            className="btn btn-outline-danger btn-sm btn_item"
-                            onClick={() => removeItem(item.id)}
+                        <tr>
+                            <th scope="row">{item.id}</th>
+                            <td>{item.title}</td>
+                            <td>{item.date}</td>
+                            <td>
+                                <button 
+                                type="button" 
+                                className="btn btn-outline-danger btn-sm btn_item"
+                                onClick={() => removeItem(item.id)}
                         >
-                            &times;
-                        </button>
-                        </td>
-                    </tr>
+                                    &times;
+                                </button>
+                            </td>
+                        </tr>
                 ))} 
             </tbody>
         </table>
