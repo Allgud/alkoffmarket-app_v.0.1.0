@@ -1,8 +1,9 @@
 import React, {useReducer} from 'react'
+import moment from 'moment'
 import axios from 'axios'
 import { FirebaseContext } from './firebaseContext'
 import { firebaseReducer } from './firebaseReducer'
-import { ADD_ITEM, FETCH_ITEMS, REMOVE_ITEM, SHOW_LOADER } from '../types'
+import { ADD_ITEM, FETCH_ITEMS, REMOVE_ITEM, SHOW_LOADER, FETCH_FILTERED_ITEMS } from '../types'
 
 const url = 'https://alko-app3-default-rtdb.europe-west1.firebasedatabase.app'
 
@@ -30,6 +31,25 @@ export const FirebaseState = ({children}) => {
 
         dispatch({
             type: FETCH_ITEMS,
+            payload
+        })
+    }
+
+    const fetchFilteredItems = async () => {
+        showLoader()
+        const res = await axios.get(`${url}/list.json`)
+
+        const result = Object.keys(res.data).map((key, index) => {
+            return {
+                ...res.data[key],
+                id: index + 1
+            }
+        })
+        let now = moment().format('YYYY-MM-DD')
+        const payload = result.filter(item => moment(item.date).diff(now, 'days') <= 90)
+        
+        dispatch({
+            type: FETCH_FILTERED_ITEMS,
             payload
         })
     }
@@ -67,7 +87,7 @@ export const FirebaseState = ({children}) => {
 
     return(
         <FirebaseContext.Provider value={{
-            showLoader, addItem, fetchItems, removeItem,
+            showLoader, addItem, fetchItems, removeItem, fetchFilteredItems,
             loading: state.loading,
             list: state.list
         }}>

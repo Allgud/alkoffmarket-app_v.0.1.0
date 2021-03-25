@@ -4,7 +4,8 @@ import { FirebaseContext } from '../context/firebase/firebaseContext'
 
 const List = () => {
 
-    const {list, removeItem} = useContext(FirebaseContext)
+    const {list} = useContext(FirebaseContext)
+
 
     return (
         <TransitionGroup component='ul' className="list-group">
@@ -17,13 +18,6 @@ const List = () => {
                     <li className="list-group-item list_item" >
                         <strong className="item_title"><span className="item_title_num">{item.id}</span>{item.title}</strong>
                         <span className="item_date">{item.date}</span>
-                        <button 
-                            type="button" 
-                            className="btn btn-outline-danger btn-sm btn_item"
-                            onClick={() => removeItem(item.id)}
-                        >
-                            &times;
-                        </button>
                     </li>
                 </CSSTransition>
                 

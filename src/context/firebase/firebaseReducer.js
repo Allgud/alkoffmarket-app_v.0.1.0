@@ -1,4 +1,4 @@
-import { ADD_ITEM, FETCH_ITEMS, REMOVE_ITEM, SHOW_LOADER } from "../types"
+import { ADD_ITEM, FETCH_ITEMS, REMOVE_ITEM, SHOW_LOADER, FETCH_FILTERED_ITEMS } from "../types"
 
 const handlers = {
     [SHOW_LOADER]: state => ({...state, loading: true}),
@@ -7,6 +7,7 @@ const handlers = {
         list:[...state.list, payload]
     }),
     [FETCH_ITEMS]: (state, {payload}) => ({...state, list: payload, loading:false}),
+    [FETCH_FILTERED_ITEMS]: (state, {payload}) => ({...state, list: payload, loading:false}),
     [REMOVE_ITEM]: (state, {payload}) => ({
         ...state,
         list: state.list.filter(li => li.id !== payload)
