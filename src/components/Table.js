@@ -18,8 +18,8 @@ const Table = () => {
             </thead>
             <tbody>
                 {list.map(item => (
-                        <tr>
-                            <th scope="row">{item.id}</th>
+                        <tr key={item.id}>
+                            <th scope="row">{item.i}</th>
                             <td>{item.title}</td>
                             <td>{item.date}</td>
                             <td>

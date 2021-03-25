@@ -42,7 +42,8 @@ export const FirebaseState = ({children}) => {
         const result = Object.keys(res.data).map((key, index) => {
             return {
                 ...res.data[key],
-                id: index + 1
+                id: key,
+                i: index
             }
         })
         let now = moment().format('YYYY-MM-DD')
