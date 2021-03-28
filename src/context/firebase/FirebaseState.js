@@ -43,10 +43,25 @@ export const FirebaseState = ({children}) => {
             return {
                 ...res.data[key],
                 id: key,
-                i: index
+                i: index,
+                t: ''
             }
         })
         let now = moment().format('YYYY-MM-DD')
+
+        for(let i = 0; i < result.length; i++) {
+            const diff = moment(result[i].date).diff(now, 'days')
+            if( diff >= 90){
+                result[i].t = 'success'
+            }else if(diff <= 60){
+                result[i].t = 'danger'
+            }else {
+                result[i].t = 'warning'
+            } 
+        }
+
+        console.log(result);
+        
         const payload = result.filter(item => moment(item.date).diff(now, 'days') <= 90)
 
         dispatch({

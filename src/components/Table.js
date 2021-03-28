@@ -18,7 +18,7 @@ const Table = () => {
             </thead>
             <tbody>
                 {list.map(item => (
-                        <tr key={item.id}>
+                        <tr key={item.id} className={`table-${item.t}`}>
                             <th scope="row">{item.i}</th>
                             <td>{item.title}</td>
                             <td>{item.date}</td>

@@ -4,7 +4,7 @@ import { AlertContext } from '../context/alert/alertContext'
 
 const Alert = () => {
 
-    const {alert, hideAlert} = useContext(AlertContext)
+    const {alert, hideAlert, autoHide} = useContext(AlertContext)
 
     return (
         <CSSTransition
@@ -16,8 +16,12 @@ const Alert = () => {
         >
             <div className={`alert alert-${alert.type || 'warning'} alert-dismissible d-flex justify-content-between`}>
                 <strong>Внимание</strong> {alert.text}
-                <button onClick={hideAlert} type="button" className="btn-close" aria-label="Close">
-                    <span className="br-5" aria-hidden="true">&times;</span>
+                <button 
+                    onClick={hideAlert || autoHide}  
+                    type="button" 
+                    className="btn-close" 
+                    aria-label="Close">
+                        <span className="br-5" aria-hidden="true">&times;</span>
                 </button>
             </div>
         </CSSTransition>
