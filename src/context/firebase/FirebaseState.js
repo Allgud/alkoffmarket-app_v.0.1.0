@@ -59,8 +59,6 @@ export const FirebaseState = ({children}) => {
                 result[i].t = 'warning'
             } 
         }
-
-        console.log(result);
         
         const payload = result.filter(item => moment(item.date).diff(now, 'days') <= 90)
 

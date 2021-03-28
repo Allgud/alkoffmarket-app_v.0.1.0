@@ -24,10 +24,22 @@ const Form = () => {
                 })
                 setValue('')
                 setDate('')
+                setTimeout(alert.hideAlert, 1000)
             }else{
                 alert.showAlert('No empty inputs')
+                setTimeout(alert.hideAlert, 3000)
             }
         }
+
+        const focusHandler = e => {
+            if(e.which === 13){
+                e.preventDefault()
+                const inputs = Array.prototype.slice.call(document.querySelector('form'))
+                const index = (inputs.indexOf(document.activeElement) + 1) % inputs.length
+                const input = inputs[index]
+                input.focus()
+            }
+        } 
 
     return (
         <form onSubmit={submitHandler}>
@@ -40,6 +52,7 @@ const Form = () => {
                         className="form-control" 
                         value={value} 
                         onChange={e => setValue(e.target.value)}
+                        onKeyPress={focusHandler}
                     />
                 </span>
                 <span className="input_date">
@@ -49,6 +62,7 @@ const Form = () => {
                         className="form-control" 
                         value={date} 
                         onChange={e => setDate(e.target.value)}
+                        onKeyPress={focusHandler}
                     />
                 </span>
                 <button 
