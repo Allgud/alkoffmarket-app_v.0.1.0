@@ -1,6 +1,7 @@
 import React, {useContext} from 'react'
 import {CSSTransition} from 'react-transition-group'
 import { AlertContext } from '../context/alert/alertContext'
+import icons from '../icons'
 
 const Alert = () => {
 
@@ -21,7 +22,7 @@ const Alert = () => {
                     type="button" 
                     className="btn-close" 
                     aria-label="Close">
-                        <span className="br-5" aria-hidden="true">&times;</span>
+                        <span className="br-5" aria-hidden="true">{icons.delButton}</span>
                 </button>
             </div>
         </CSSTransition>

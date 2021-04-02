@@ -1,8 +1,25 @@
 import React, { useContext } from 'react'
 import { FirebaseContext } from '../context/firebase/firebaseContext'
 
+import icons from '../icons'
+
 
 const Table = () => {
+
+    const checkHadler = e => {
+        const elem = e.currentTarget
+        const input = elem.querySelector('input')
+        const isChecked = input.hasAttribute("checked")
+        if(!isChecked){
+            input.setAttribute("checked", "checked")
+            //До функции создать стили и применить здесь. Не забыть написать обратные стили
+            elem.style.opacity = 0.5
+
+        } else {
+            input.removeAttribute("checked", "checked")
+            elem.style.opacity = 1
+        }
+    }
 
     const {list, removeItem} = useContext(FirebaseContext)
 
@@ -14,11 +31,18 @@ const Table = () => {
                     <th scope="col">Name</th>
                     <th scope="col">Date</th>
                     <th scope="col">Bin</th>
+                    <th scope="col">
+                       {icons.checkButton}
+                    </th>
                 </tr>
             </thead>
             <tbody>
                 {list.map(item => (
-                        <tr key={item.id} className={`table-${item.t}`}>
+                        <tr 
+                            key={item.id} 
+                            className={`table-${item.t}`}
+                            onClick={checkHadler}
+                        >
                             <th scope="row">{item.i}</th>
                             <td>{item.title}</td>
                             <td>{item.date}</td>
@@ -28,12 +52,17 @@ const Table = () => {
                                 className="btn btn-outline-danger btn-sm"
                                 onClick={() => removeItem(item.id)}
                         >           <span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
-                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                                    </svg>
+                                        {icons.delButton}
                                     </span> 
                                 </button>
+                            </td>
+                            <td>
+                                <div className="ml-3 pt-1">
+                                    <input 
+                                        className="form-check-input" 
+                                        type="checkbox"
+                                    />
+                                </div>
                             </td>
                         </tr>
                 ))} 
